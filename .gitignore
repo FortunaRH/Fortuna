@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# environment variables & secrets (never commit)
+.env
+.env.*
+
+# next.js build output
+.next/
+out/
+
+# typescript build info
+*.tsbuildinfo
+
+# foundry build + deployment artifacts
+contracts/broadcast/
+contracts/cache/
+
+# generic build output
+dist/
+build/

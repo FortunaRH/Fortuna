@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-vt323), monospace;
+}
+
+/* scrambled text */
+.scramble-text {
+  white-space: pre-wrap;
+  font-family: var(--font-vt323), monospace;
+}
+
+.scramble-text-inner {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.scramble-char {
+  display: inline;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* loading screen — looping wave of short vertical lines */
+.loader-line {
+  width: 3px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: loader-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes loader-pulse {
+  0%,
+  100% {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+  50% {
+    background-color: #ffffff;
+    box-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 18px rgba(255, 255, 255, 0.5),
+      0 0 40px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* CRT TV screen */
+.crt-screen {
+  position: relative;
+  overflow: hidden;
+}
+.crt-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.28) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+}
+.crt-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(255, 255, 255, 0.08), transparent 60%);
+  pointer-events: none;
+}
