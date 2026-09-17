@@ -1,5 +1,4 @@
-// TODO: replace with your public GitHub repo URL once it exists.
-const GITHUB_URL = "";
+const GITHUB_URL = "https://github.com/FortunaRH/Fortuna";
 
 export const metadata = { title: "Docs - Fortuna" };
 
