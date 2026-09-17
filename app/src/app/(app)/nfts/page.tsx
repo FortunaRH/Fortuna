@@ -1,15 +1,11 @@
-import { NftGallery } from "@/components/NftGallery";
+import { FontScramble } from "@/components/FontScramble";
 
 export const metadata = { title: "NFTs - Fortuna" };
 
 export default function NftsPage() {
   return (
-    <div className="space-y-8">
-      <header className="text-center">
-        <h1 className="font-display text-3xl text-white">Your NFTs</h1>
-        <p className="mt-2 text-white/60">A fixed Braille portrait, tinted per token.</p>
-      </header>
-      <NftGallery />
+    <div className="flex min-h-[70vh] items-center justify-center py-16">
+      <FontScramble text="SOON" className="text-6xl text-white md:text-8xl" />
     </div>
   );
 }
