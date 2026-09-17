@@ -14,6 +14,9 @@ const vt323 = VT323({
 export const metadata: Metadata = {
   title: "Fortuna",
   description: "Fortuna - the verifiable randomness layer for Robinhood.",
+  icons: {
+    icon: "/favicon/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
