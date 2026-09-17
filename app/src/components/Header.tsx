@@ -4,11 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ConnectButton } from "./ConnectButton";
 import DecryptedText from "./DecryptedText";
+import { TOKEN_URL } from "@/lib/contracts";
 
-const links = [
+type NavLink = { href: string; label: string; external?: boolean };
+
+const links: NavLink[] = [
   { href: "/home", label: "HOME" },
   { href: "/nfts", label: "NFTS" },
   { href: "/test", label: "TEST" },
+  { href: TOKEN_URL, label: "TOKEN", external: true },
   { href: "/docs", label: "DOCS" },
 ];
 
@@ -21,14 +25,12 @@ export function Header() {
           FORTUNA<span className="animate-blink">_</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`text-base transition hover:text-white ${
-                pathname === l.href ? "text-white underline" : "text-white/50"
-              }`}
-            >
+          {links.map((l) => {
+            const active = !l.external && pathname === l.href;
+            const className = `text-base transition hover:text-white ${
+              active ? "text-white underline" : "text-white/50"
+            }`;
+            const label = (
               <DecryptedText
                 text={l.label}
                 speed={50}
@@ -36,8 +38,20 @@ export function Header() {
                 sequential
                 encryptedClassName="opacity-40"
               />
-            </Link>
-          ))}
+            );
+            if (l.external) {
+              return (
+                <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className={className}>
+                  {label}
+                </a>
+              );
+            }
+            return (
+              <Link key={l.href} href={l.href} className={className}>
+                {label}
+              </Link>
+            );
+          })}
         </nav>
         <ConnectButton />
       </div>

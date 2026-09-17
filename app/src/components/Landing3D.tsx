@@ -14,6 +14,7 @@ import { BlurReflectorShader } from "@/lib/blurReflector";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { createTvFromGltf, createGlowTexture, type CrtTv } from "@/lib/crtTv";
 import { getDestination, startLoading } from "@/lib/loadingStore";
+import { TOKEN_URL } from "@/lib/contracts";
 
 const SCRAMBLE = "$!%#@^&*()<>?:";
 const W = 512;
@@ -142,25 +143,32 @@ export default function Landing3D() {
     }
 
     const tv1 = createTvFromGltf(gltfScene);
-    tv1.group.position.x = -2.2;
-    tv1.group.rotation.y = 0.12;
+    tv1.group.position.x = -3.3;
+    tv1.group.rotation.y = 0.16;
     tv1.group.userData.tvId = 1;
     scene.add(tv1.group);
     setupScreen(tv1, "HOME", 1);
 
     const tv3 = createTvFromGltf(gltfScene);
-    tv3.group.position.x = 0;
-    tv3.group.rotation.y = 0;
+    tv3.group.position.x = -1.1;
+    tv3.group.rotation.y = 0.06;
     tv3.group.userData.tvId = 3;
     scene.add(tv3.group);
     setupScreen(tv3, "NFTS", 3);
 
     const tv2 = createTvFromGltf(gltfScene);
-    tv2.group.position.x = 2.2;
-    tv2.group.rotation.y = -0.12;
+    tv2.group.position.x = 1.1;
+    tv2.group.rotation.y = -0.06;
     tv2.group.userData.tvId = 2;
     scene.add(tv2.group);
     setupScreen(tv2, "DOCS", 2);
+
+    const tv4 = createTvFromGltf(gltfScene);
+    tv4.group.position.x = 3.3;
+    tv4.group.rotation.y = -0.16;
+    tv4.group.userData.tvId = 4;
+    scene.add(tv4.group);
+    setupScreen(tv4, "TOKEN", 4);
 
     // --- canvas drawing ---
     function drawScanlines(ctx: CanvasRenderingContext2D) {
@@ -225,7 +233,7 @@ export default function Landing3D() {
       pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
       mouseNdc = { x: pointer.x, y: pointer.y };
       raycaster.setFromCamera(pointer, camera);
-      const hits = raycaster.intersectObjects([tv1.group, tv3.group, tv2.group], true);
+      const hits = raycaster.intersectObjects([tv1.group, tv3.group, tv2.group, tv4.group], true);
       return hits.length ? findTvId(hits[0].object) : null;
     }
 
@@ -262,6 +270,8 @@ export default function Landing3D() {
       } else if (id === 3) {
         startLoading("/nfts");
         router.push("/nfts");
+      } else if (id === 4) {
+        window.open(TOKEN_URL, "_blank", "noopener,noreferrer");
       }
     }
 

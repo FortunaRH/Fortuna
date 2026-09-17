@@ -3,6 +3,10 @@ import { parseAbi } from "viem";
 
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
+// ---- $FORT token (launched on ntrpy.fun) ----
+export const TOKEN_ADDRESS = "0xe95f4bbfb38fb1b953ffd0b437defffc201784ca" as `0x${string}`;
+export const TOKEN_URL = "https://app.ntrpy.fun/app/token/0xe95f4bbfb38fb1b953ffd0b437defffc201784ca";
+
 // ---- Fortuna (randomness layer) ----
 export const ENTROPY_ADDRESS = (process.env.NEXT_PUBLIC_ENTROPY_ADDRESS ??
   ZERO_ADDRESS) as `0x${string}`;
